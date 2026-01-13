@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title> feedbackForm </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: #fff;
+      width: 90%;
+      max-width: 420px;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      animation: fadeIn 0.4s ease;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    p {
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      resize: none;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    /* POPUP MESSAGE */
+    .popup {
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      padding: 20px 30px;
+      border-radius: 14px;
+      font-size: 16px;
+      opacity: 0;
+      animation: popupIn 0.4s forwards;
+      z-index: 999;
+    }
+
+    .popup.hide {
+      animation: popupOut 0.6s forwards;
+    }
+
+    @keyframes popupIn {
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    @keyframes popupOut {
+      to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.3);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>ONE LAST THOUGHT..!!!! </h1>
+    <p>Jo bhi yahan likhoge vo kisi ko pata nhi lagega bhaishaab 😉.</p>
+
+    <!-- FORM SUBMIT -->
+    <form id="feedbackForm"
+      action="https://formsubmit.co/himaansho016@gmail.com"
+      method="POST"
+    >
+      <input type="hidden" name="_subject" value="New Anonymous Feedback">
+      <input type="hidden" name="_captcha" value="false">
+
+      <textarea
+        id="feedback"
+        name="message"
+        placeholder="Haan toh kya kehna chahte h aap mere baare m 🙈🙈 ..."
+        required
+      ></textarea>
+
+      <button type="submit">
+         GOOD BYEE...!!!
+      </button>
+    </form>
+  </div>
+<script>
+  const messages = [
+    "Apna khayal rakhna… yaadon mein rahoge. 🥹💛",
+    "Tumhari kami mehsoos hoti rahegi. 🤍✨",
+    "Film abhi khatam nahi hui, bas is scene pe cut hai. 🎬✂️",
+    "Main chal raha hoon, par kahani ka safar jaari hai. 🚶‍♂️📖",
+    "Phir mulaqat hogi, kisi aur mod pe. 🌸🛣️",
+    "Alvida kehna aasan nahi, isliye bas keh raha hoon—phir milenge. 🥲🤝",
+    "Yeh goodbye nahi, sirf thoda sa interval hai. ⏸️😊",
+    "Jab waqt saath dega, hum phir aamne-saamne honge. ⏳💫",
+    "Ijaazat leta hoon, yaadein dil mein sambhaal ke. 🫶🎒",
+    "Yeh akhir nahi, bas ek chhota sa pause hai. 💭💖"
+  ];
+
+  const form = document.getElementById("feedbackForm");
+  let alreadySubmitted = false;
+
+  form.addEventListener("submit", function (e) {
+    if (alreadySubmitted) return;
+
+    e.preventDefault();
+    alreadySubmitted = true;
+
+    showPopup();
+
+    // 🔥 ACTUAL FORM SUBMIT (mail jayegi)
+    setTimeout(() => {
+      form.submit();
+    }, 500);
+
+    // 🔒 FORM KO COMPLETELY DISABLE
+    setTimeout(() => {
+      form.reset();
+      form.style.pointerEvents = "none";
+      form.style.opacity = "0.6";
+    }, 800);
+  });
+
+  function showPopup() {
+    const popup = document.createElement("div");
+    popup.className = "popup";
+    popup.innerText =
+      messages[Math.floor(Math.random() * messages.length)];
+
+    document.body.appendChild(popup);
+
+    setTimeout(() => {
+      popup.classList.add("hide");
+    },5000);
+
+    setTimeout(() => {
+      popup.remove();
+    }, 3600);
+  }
+</script>
+
+
+</body>
+</html>
