@@ -23,26 +23,34 @@ form.addEventListener("submit", function (e) {
   showPopup();
   launchConfetti();
 
+  /* ⏳ 6 SECOND HOLD ON SCREEN */
   setTimeout(() => {
-    form.submit();
-  }, 1500);
+    form.submit(); // actual submit
+  }, 6000);
 
   setTimeout(() => {
     form.reset();
     form.style.pointerEvents = "none";
     form.style.opacity = "0.6";
-  }, 1500);
+  }, 6000);
 });
 
 function showPopup() {
   const popup = document.createElement("div");
   popup.className = "popup";
-  popup.innerText = messages[Math.floor(Math.random() * messages.length)];
+  popup.innerText =
+    messages[Math.floor(Math.random() * messages.length)];
 
   document.body.appendChild(popup);
 
-  setTimeout(() => popup.classList.add("hide"), 1000);
-  setTimeout(() => popup.remove(), 5600);
+  /* Popup 5 sec visible */
+  setTimeout(() => {
+    popup.classList.add("hide");
+  }, 5000);
+
+  setTimeout(() => {
+    popup.remove();
+  }, 6000);
 }
 
 function launchConfetti() {
@@ -55,17 +63,20 @@ function launchConfetti() {
     "#ffffff",
   ];
 
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 50; i++) {
     const confetti = document.createElement("div");
     confetti.className = "confetti";
 
     confetti.style.left = Math.random() * 100 + "vw";
     confetti.style.backgroundColor =
       colors[Math.floor(Math.random() * colors.length)];
-    confetti.style.animationDuration = 2 + Math.random() * 2 + "s";
+    confetti.style.animationDuration =
+      4 + Math.random() * 2 + "s"; // slow fall
 
     document.body.appendChild(confetti);
 
-    setTimeout(() => confetti.remove(), 4000);
+    setTimeout(() => {
+      confetti.remove();
+    }, 6000);
   }
 }
