@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>feedbackForm</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <title>Feedback Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- CSS FILE -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
   <div class="card">
     <h1>ONE LAST THOUGHT.</h1>
     <p>Jo bhi yahan likhoge vo kisi ko pata nhi lagega bhaishaab 😉.</p>
@@ -17,10 +19,11 @@
       action="https://formsubmit.co/himaansho016@gmail.com"
       method="POST"
     >
-      <input type="hidden" name="_subject" value="New Anonymous Feedback">
-      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New Anonymous Feedback" />
+      <input type="hidden" name="_captcha" value="false" />
 
       <textarea
+        id="feedback"
         name="message"
         placeholder="Haan toh kya kehna chahte h aap mere baare m 🙈🙈 ..."
         required
@@ -30,6 +33,7 @@
     </form>
   </div>
 
+  <!-- JS FILE -->
   <script src="script.js"></script>
 </body>
 </html>
